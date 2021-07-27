@@ -10,30 +10,24 @@ class App extends Component{
       lose: false,
       win: false,
       player1: true,
-      player2: false
+      player2: false,
+      turn: 1
     }
   }
 
   handleGamePlay = (index) => {
-      const {squares, player1, player2} = this.state
+      const {squares, turn} = this.state
 
-      if(player1 == true){
+      //if turn is an odd number than its ply1
+      //else it is ply2's turn
+      if(turn %2 !== 0){
         squares[index] = 'X'
-        this.setState({squares: squares})
-      }else if(player2 == true){
-        squares[index] = 'O'
-        this.setState({squares: squares})
+        this.setState({squares: squares, turn: turn+1})
       }
-  }
-
-  currentPlayer = (player) => {
-    if(player == true){
-      this.state.player1 = true
-      this.state.player2 = false
-    }else{
-      this.state.player1 = false
-      this.state.player2 = true
-    }
+      else{
+        squares[index] = 'O'
+        this.setState({squares: squares, turn: turn+1})
+      }
   }
 
   render(){
@@ -47,9 +41,7 @@ class App extends Component{
                       value={value}
                       index={index}
                       handleGamePlay={this.handleGamePlay}
-                      currentPlayer = {this.currentPlayer}
-                      player1 = {this.state.player1}
-                      player2 = {this.state.player2}
+                      turn={this.state.turn}
                   />
           })}
         </div>
