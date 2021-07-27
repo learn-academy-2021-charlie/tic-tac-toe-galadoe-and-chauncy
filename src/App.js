@@ -7,32 +7,48 @@ class App extends Component{
     super(props)
     this.state = {
       squares: ['', '', '', '', '', '', '', '', ''],
-      clicked: [0, 0, 0, 0, 0, 0, 0, 0, 0], 
+      clicked: [0, 0, 0, 0, 0, 0, 0, 0, 0],
       win: false,
       turn: 1,
+      count: 0
     }
   }
 
   handleGamePlay = (index) => {
-      const {squares, turn, clicked} = this.state
+      const {squares, turn, clicked, count} = this.state
 
+      console.log(count);
+      if(count == 8){
+        alert("No moves left!")
+      }
       //if turn is an odd number than its ply1
       //else it is ply2's turn
       if(turn % 2 !== 0){
         squares[index] = 'X'
         clicked[index] = 1
         this.calculateWinner()
-        
-        this.setState({squares: squares, turn: turn + 1, clicked: clicked})
+
+        this.setState({squares: squares, turn: turn + 1, clicked: clicked, count: count+1})
       }
       else{
         squares[index] = 'O'
         clicked[index] = 2
-        
+
         this.calculateWinner()
-        this.setState({squares: squares, turn: turn + 1, clicked: clicked})
+        this.setState({squares: squares, turn: turn + 1, clicked: clicked, count: count+1})
       }
   }
+
+  resetGame = () => {
+    var squares = ['', '', '', '', '', '', '', '', '']
+    var clicked = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    var win = false
+    var turn = 1
+    var count = 0
+
+    this.setState({squares: squares, clicked: clicked, win: win, turn: turn, count: count})
+  }
+
   calculateWinner = () => {
     const {clicked, turn} = this.state
     let winner = ''
@@ -47,13 +63,13 @@ class App extends Component{
       [0, 4, 8],
       [2, 4, 8]
     ]
-    
+
     for(let i=0; i < possibleLines.length; i++){
       let winningRow = possibleLines[i]
       let p1 = winningRow[0]
       let p2 = winningRow[1]
       let p3 = winningRow[2]
-      
+
       if(clicked[p1] === clicked[p2] && clicked[p1] === clicked[p3] && clicked[p2] === clicked[p3] && clicked[p1] !== 0 && clicked[p2] !== 0 && clicked[p3] !==0 ){
         if(turn % 2 !== 0){
           winner = 'Player 1'
@@ -86,6 +102,10 @@ class App extends Component{
                   />
           })}
         </div>
+          <div className = "resetButton">
+            <button onClick = {this.resetGame}>Restart Game!</button>
+            <p>Created By: Chauncy & Galadoe</p>
+          </div>
       </>
     )
   }

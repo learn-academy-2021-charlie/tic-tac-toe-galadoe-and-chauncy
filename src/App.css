@@ -1,5 +1,7 @@
 h1{
   text-align: center;
+  font-family: monoaco;
+  font-size: 50px;
 }
 
 .square{
@@ -11,7 +13,7 @@ h1{
 }
 
 .square:hover{
-  background: lightblue;
+  background: white;
   cursor: pointer;
 }
 
@@ -20,4 +22,23 @@ h1{
   width: 620px;
   flex-wrap: wrap;
   margin: 0 auto;
+  background: #adede2
+}
+
+.resetButton {
+  text-align: center;
+}
+
+button{
+  margin-top: 15px;
+  width: 150px;
+  height: 75px;
+  font-size: 20px;
+}
+button:hover{
+  background: gray;
+}
+
+p{
+  text-align: right;
 }
