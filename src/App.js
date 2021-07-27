@@ -14,6 +14,29 @@ class App extends Component{
     }
   }
 
+  calculateWinner = () => {
+    const {clicked} = this.state.clicked
+
+    const possibleLines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 8]
+    ]
+
+    for(let i=0; i < possibleLines.length; i++){
+      // const[a, b, c] = possibleLines[i]
+      console.log(possibleLines[i]);
+      // if(clicked[a] === clicked[b] && clicked[b] === clicked[c] && clicked[a] === clicked[c]){
+      //   this.setState({win: true})
+      // }
+    }
+  }
+
   handleGamePlay = (index) => {
       const {squares, turn, clicked} = this.state
 
@@ -26,13 +49,12 @@ class App extends Component{
       }
       else{
         squares[index] = 'O'
-        clicked[index] = 1
+        clicked[index] = 2
         this.setState({squares: squares, turn: turn + 1, clicked: clicked})
       }
   }
-  hasBeenClicked = (index) => {
 
-  }
+
 
   render(){
     console.log(this.state.clicked)

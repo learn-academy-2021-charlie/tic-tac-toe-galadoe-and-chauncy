@@ -4,6 +4,8 @@ class Square extends Component{
   handleClick = () => {
     if(this.props.clicked[this.props.index] !== 1){
         this.props.handleGamePlay(this.props.index)
+    }else if(this.props.clicked[this.props.index] !== 2){
+      this.props.handleGamePlay(this.props.index)
     }
   }
 

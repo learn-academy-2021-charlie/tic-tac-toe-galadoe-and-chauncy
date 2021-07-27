@@ -10,6 +10,11 @@ h1{
   text-align: center;
 }
 
+.square:hover{
+  background: lightblue;
+  cursor: pointer;
+}
+
 .gameboard{
   display: flex;
   width: 620px;
