@@ -8,14 +8,32 @@ class App extends Component{
     this.state = {
       squares: ['', '', '', '', '', '', '', '', ''],
       lose: false,
-      win: false
+      win: false,
+      player1: true,
+      player2: false
     }
   }
-  handleGamePlay = (index) => {
-      const {squares} = this.state
 
-      squares[index] = 'X'
-      this.setState({squares: squares})
+  handleGamePlay = (index) => {
+      const {squares, player1, player2} = this.state
+
+      if(player1 == true){
+        squares[index] = 'X'
+        this.setState({squares: squares})
+      }else if(player2 == true){
+        squares[index] = 'O'
+        this.setState({squares: squares})
+      }
+  }
+
+  currentPlayer = (player) => {
+    if(player == true){
+      this.state.player1 = true
+      this.state.player2 = false
+    }else{
+      this.state.player1 = false
+      this.state.player2 = true
+    }
   }
 
   render(){
@@ -24,11 +42,14 @@ class App extends Component{
         <h1>Tic Tac Toe</h1>
         <div className = "gameboard">
           {this.state.squares.map((value, index) => {
-            return <Square 
+            return <Square
                       key={index}
                       value={value}
                       index={index}
                       handleGamePlay={this.handleGamePlay}
+                      currentPlayer = {this.currentPlayer}
+                      player1 = {this.state.player1}
+                      player2 = {this.state.player2}
                   />
           })}
         </div>
