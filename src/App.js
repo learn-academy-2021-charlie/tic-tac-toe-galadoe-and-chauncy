@@ -7,33 +7,9 @@ class App extends Component{
     super(props)
     this.state = {
       squares: ['', '', '', '', '', '', '', '', ''],
-      clicked: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-      lose: false,
+      clicked: [0, 0, 0, 0, 0, 0, 0, 0, 0], 
       win: false,
       turn: 1,
-    }
-  }
-
-  calculateWinner = () => {
-    const {clicked} = this.state.clicked
-
-    const possibleLines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 8]
-    ]
-
-    for(let i=0; i < possibleLines.length; i++){
-      // const[a, b, c] = possibleLines[i]
-      console.log(possibleLines[i]);
-      // if(clicked[a] === clicked[b] && clicked[b] === clicked[c] && clicked[a] === clicked[c]){
-      //   this.setState({win: true})
-      // }
     }
   }
 
@@ -53,8 +29,6 @@ class App extends Component{
         this.setState({squares: squares, turn: turn + 1, clicked: clicked})
       }
   }
-
-
 
   render(){
     console.log(this.state.clicked)
