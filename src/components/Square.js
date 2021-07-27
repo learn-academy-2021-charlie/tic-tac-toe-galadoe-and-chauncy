@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class Square extends Component{
   handleClick = () => {
-    if(this.props.clicked[this.props.index] === 0){
+    if(this.props.clicked[this.props.index] === 0 && this.props.win === false){
         this.props.handleGamePlay(this.props.index)
     }
   }

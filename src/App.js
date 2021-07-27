@@ -34,7 +34,8 @@ class App extends Component{
       }
   }
   calculateWinner = () => {
-    const {clicked} = this.state
+    const {clicked, turn} = this.state
+    let winner = ''
 
     const possibleLines = [
       [0, 1, 2],
@@ -54,7 +55,13 @@ class App extends Component{
       let p3 = winningRow[2]
       
       if(clicked[p1] === clicked[p2] && clicked[p1] === clicked[p3] && clicked[p2] === clicked[p3] && clicked[p1] !== 0 && clicked[p2] !== 0 && clicked[p3] !==0 ){
-          alert("winner")
+        if(turn % 2 !== 0){
+          winner = 'Player 1'
+        }
+        else{
+          winner = 'Player 2'
+        }
+          alert(`${winner} is the WINNER!`)
           this.setState({win: true})
       }
 
@@ -75,6 +82,7 @@ class App extends Component{
                       handleGamePlay={this.handleGamePlay}
                       turn={this.state.turn}
                       clicked={this.state.clicked}
+                      win={this.state.win}
                   />
           })}
         </div>
