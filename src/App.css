@@ -3,6 +3,9 @@ h1{
   font-family: monoaco;
   font-size: 50px;
 }
+h3{
+  text-align: center;
+}
 
 .square{
   height: 200px;

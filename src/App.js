@@ -10,7 +10,8 @@ class App extends Component{
       clicked: [0, 0, 0, 0, 0, 0, 0, 0, 0],
       win: false,
       turn: 1,
-      count: 0
+      count: 0,
+      currPlayer: ''
     }
   }
 
@@ -24,6 +25,7 @@ class App extends Component{
       //if turn is an odd number than its ply1
       //else it is ply2's turn
       if(turn % 2 !== 0){
+        this.currentPlayer()
         squares[index] = 'X'
         clicked[index] = 1
         this.calculateWinner()
@@ -31,6 +33,7 @@ class App extends Component{
         this.setState({squares: squares, turn: turn + 1, clicked: clicked, count: count+1})
       }
       else{
+        this.currentPlayer()
         squares[index] = 'O'
         clicked[index] = 2
 
@@ -84,11 +87,25 @@ class App extends Component{
     }
   }
 
+  currentPlayer = () => {
+    var {currPlayer, turn} = this.state
+
+    if(turn % 2 !== 0){
+      currPlayer = 'Player 1'
+    }
+    else{
+      currPlayer = 'Player 2'
+    }
+      this.setState({currPlayer: currPlayer})
+  }
+  
+
   render(){
     console.log(this.state.clicked)
     return(
       <>
         <h1>Tic Tac Toe</h1>
+        <h3>Current Player: {this.state.currPlayer}</h3>
         <div className = "gameboard">
           {this.state.squares.map((value, index) => {
             return <Square
