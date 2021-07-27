@@ -7,30 +7,35 @@ class App extends Component{
     super(props)
     this.state = {
       squares: ['', '', '', '', '', '', '', '', ''],
+      clicked: [0, 0, 0, 0, 0, 0, 0, 0, 0],
       lose: false,
       win: false,
-      player1: true,
-      player2: false,
-      turn: 1
+      turn: 1,
     }
   }
 
   handleGamePlay = (index) => {
-      const {squares, turn} = this.state
+      const {squares, turn, clicked} = this.state
 
       //if turn is an odd number than its ply1
       //else it is ply2's turn
-      if(turn %2 !== 0){
+      if(turn % 2 !== 0){
         squares[index] = 'X'
-        this.setState({squares: squares, turn: turn+1})
+        clicked[index] = 1
+        this.setState({squares: squares, turn: turn + 1, clicked: clicked})
       }
       else{
         squares[index] = 'O'
-        this.setState({squares: squares, turn: turn+1})
+        clicked[index] = 1
+        this.setState({squares: squares, turn: turn + 1, clicked: clicked})
       }
+  }
+  hasBeenClicked = (index) => {
+
   }
 
   render(){
+    console.log(this.state.clicked)
     return(
       <>
         <h1>Tic Tac Toe</h1>
@@ -42,6 +47,7 @@ class App extends Component{
                       index={index}
                       handleGamePlay={this.handleGamePlay}
                       turn={this.state.turn}
+                      clicked={this.state.clicked}
                   />
           })}
         </div>
